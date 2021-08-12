@@ -1,4 +1,4 @@
-from symbol_table import insert, show, update, delete, search
+from symbol_table import insert, show, update, delete, search, symbol_table
 
 
 def user_choice():
@@ -21,6 +21,10 @@ def user_choice():
             user_data = input('\n Please enter comma separated data you want to add: ')
             print(insert(user_data))
 
+        if len(symbol_table) == 0:
+            print("Symbol table is empty. Please insert data first! \n")
+            continue
+
         elif _user_choice == '2':
             show()
 
@@ -33,7 +37,9 @@ def user_choice():
             print(update(var_name=user_data))
 
         elif _user_choice == '5':
-            delete()
+            len(symbol_table)
+            user_data = input('\n Please enter variable name you want to delete: ')
+            print(delete(var_name=user_data))
 
         elif _user_choice == '6':
             break

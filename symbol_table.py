@@ -9,6 +9,12 @@ def insert(data: str):
     if ',' not in data:
         return "Sorry! You didn't enter comma separated value. \n"
 
+    if data[0].isdigit():
+        return "You cannot start a variable name with number \n"
+
+    if len(symbol_table) > 54:
+        return "Symbol table is full! \n"
+
     data_list = data.split(',')
 
     var_name = data_list[0].strip()
@@ -42,8 +48,14 @@ def update(var_name):
     return "Update Successful \n"
 
 
-def delete():
-    pass
+def delete(var_name):
+    is_match_found, index = has_match_found(var_name=var_name, symbol_table=symbol_table)
+
+    if not is_match_found:
+        return "Sorry! No Match. Name not found! \n"
+
+    del symbol_table[index]
+    return "Delete successful! \n"
 
 
 def search(var_name: str):
@@ -59,4 +71,5 @@ def search(var_name: str):
 def show():
     for el in symbol_table:
         _el: SymbolTable = el
-        print(f"Hash key is: {_el.hash_key} --> Name: {_el.var_name}  --&&-- DataType: {_el.data_type} \n")
+        print(f"Hash key is: {_el.hash_key} --> Name: {_el.var_name}  --&&-- DataType: {_el.data_type}")
+    print()
